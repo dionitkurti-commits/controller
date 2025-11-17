@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Meshari Controller</title>
+<title>Meshari Global Hand Control</title>
 <style>
 body {
   background:#111; color:white; text-align:center;
@@ -14,7 +14,7 @@ button { padding:15px; width:200px; margin:10px; font-size:20px; }
 </head>
 <body>
 
-<h1>🌍 Meshari Global Controller</h1>
+<h1>🌍 Global Hand Controller</h1>
 
 <h3>Left / Right</h3>
 <input id="lx" type="range" min="-1" max="1" step="0.01" class="slider">
@@ -28,21 +28,21 @@ button { padding:15px; width:200px; margin:10px; font-size:20px; }
 <button onclick="sendFinger(0)">✋ Open Fingers</button>
 
 <script>
-let server = "https://consists-cathedral-occupations-trials.trycloudflare.com/set";
+let server = "https://tomato-zones-plus-moms.trycloudflare.com/set";
+let fingers = 0;
 
-let finger_state = 0;
-
-function sendFinger(f) { finger_state = f; }
+function sendFinger(f) { fingers = f; }
 
 function send() {
     let lx = document.getElementById("lx").value;
     let ly = document.getElementById("ly").value;
 
-    fetch(`${server}?lx=${lx}&ly=${ly}&fingers=${finger_state}`)
-      .catch(()=>{});
+    fetch(`${server}?lx=${lx}&ly=${ly}&fingers=${fingers}`)
+      .catch(() => {});
 }
 
-setInterval(send, 80);   // 12 FPS
+setInterval(send, 120);  // 8 fps (stable for Cloudflare)
 </script>
+
 </body>
 </html>
